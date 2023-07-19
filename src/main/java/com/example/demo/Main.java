@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class Main {
@@ -17,7 +18,17 @@ public class Main {
             System.out.println(affectRow);
             stm.executeUpdate("insert into brands(name) values('puma')");
             stm.executeUpdate("insert into brands(name) values('çonver')");
+
+            // Truy vấn để lấy dữ liệu từ bảng "brands"
+            ResultSet rs = stm.executeQuery("SELECT * FROM brands");
+            // Hiển thị dữ liệu lên console
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                System.out.println("ID: " + id + ", Name: " + name);
+            }
             conn.close();
+
 
         }catch (Exception e){
             System.out.println(e.getMessage());
