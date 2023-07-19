@@ -12,7 +12,11 @@ public class Main {
             Connection conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/java30", "root", "123456");
             System.out.println("connet db");
             Statement stm = conn.createStatement();
-            stm.execute("create table if not exists brands(id int primary key auto_increment,name varchar(50))");
+//            stm.execute("create table if not exists brands(id int primary key auto_increment,name varchar(50))");
+            int affectRow= stm.executeUpdate("insert into brands(name) values('nike')");
+            System.out.println(affectRow);
+            stm.executeUpdate("insert into brands(name) values('puma')");
+            stm.executeUpdate("insert into brands(name) values('çonver')");
             conn.close();
 
         }catch (Exception e){
